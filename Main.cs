@@ -12,17 +12,8 @@ namespace WebTest
 			
 			HttpWebResponse response;
 			
-//			response = (HttpWebResponse)request.GetResponse();
-			IAsyncResult asyncResult = request.BeginGetResponse(null, null);
 			Console.Write("Waiting...");
-			while (!asyncResult.IsCompleted)
-			{
-				Console.Write(".");
-				Thread.Sleep(500);
-			}
-			Console.WriteLine();
-			
-			response = (HttpWebResponse)request.EndGetResponse(asyncResult);
+			response = (HttpWebResponse)request.GetResponse();
 			
 			using (Stream responseStream = response.GetResponseStream())
 			{
